@@ -4,10 +4,10 @@ I. Un p'tit nom DNS
 
 🌞 Prouvez que c'est effectif
 ```sh
-PS C:\Users\eliot> az network public-ip show  --resource-group B2_CScloud  --name azure1.tp1PublicIP  --query "{vm:'azure1.tp2', ip:ipAddress, dns:dnsSettings.fqdn}"  -o table
+PS C:\Users\eliot> az network public-ip show  --resource-group TP_LEO  --name azure1.tp1PublicIP  --query "{vm:'azure1.tp2', ip:ipAddress, dns:dnsSettings.fqdn}"  -o table
 Vm          Ip             Dns
 ----------  -------------  ---------------------------------------------
-azure1.tp2  20.19.160.221  meowtp2cloud.francecentral.cloudapp.azure.com
+azure1.tp2  20.19.160.222  meowtp2cloud.francecentral.cloudapp.azure.com
 
 - Curl
 
@@ -48,14 +48,14 @@ RawContentLength  : 12566
 II. cloud-init
 🌞 Tester cloud-init
 ```sh
-PS C:\Users\eliot> az vm create --resource-group B2_CScloud --name azuretp --image Ubuntu2404 --size Standard_B1s --location francecentral --public-ip-sku Standard --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\id_ed25519.pub" --admin-username eliot --output table
+PS C:\Users\eliot> az vm create --resource-group TP_LEO --name azuretp --image Ubuntu2204--size Standard_B1s --location francecentral --public-ip-sku Standard --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\id_ed25519.pub" --admin-username eliot --output table
 The default value of '--size' will be changed to 'Standard_D2s_v5' from 'Standard_DS1_v2' in a future release.
 Selecting "northeurope" may reduce your costs. The region you've selected may cost more for the same services. You can disable this message in the future with the command "az config set core.display_region_identified=false". Learn more at https://go.microsoft.com/fwlink/?linkid=222571
 
 
 ResourceGroup    PowerState    PublicIpAddress    Fqdns    PrivateIpAddress    MacAddress         Location
 ---------------  ------------  -----------------  -------  ------------------  -----------------  -------------
-B2_CScloud       VM running    4.233.71.128                10.0.0.10           7C-ED-8D-83-D8-71  francecentral
+TP_LEO       VM running    4.233.71.128                10.0.0.10           7C-ED-8D-83-D8-71  francecentral
 ```
 🌞 Vérifier que cloud-init a bien fonctionné
 
@@ -142,13 +142,13 @@ eliot@azuretp:~$ ls -al /var/log/cloud-init*
 
 Deploiement
 ```sh
-PS C:\Users\eliot> az vm create --resource-group B2_CScloud --name azure2.tp2 --image Ubuntu2404 --size Standard_B1s --location francecentral --public-ip-sku Standard  --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\cloud_tp.pub" --admin-username eliotnth --output table
+PS C:\Users\eliot> az vm create --resource-group TP_LEO --name azure2.tp2 --image Ubuntu2204--size Standard_B1s --location francecentral --public-ip-sku Standard  --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\cloud_tp.pub" --admin-username eliotnth --output table
 The default value of '--size' will be changed to 'Standard_D2s_v5' from 'Standard_DS1_v2' in a future release.
 Selecting "northeurope" may reduce your costs. The region you've selected may cost more for the same services. You can disable this message in the future with the command "az config set core.display_region_identified=false". Learn more at https://go.microsoft.com/fwlink/?linkid=222571
 
 ResourceGroup    PowerState    PublicIpAddress    Fqdns    PrivateIpAddress    MacAddress         Location
 ---------------  ------------  -----------------  -------  ------------------  -----------------  -------------
-B2_CScloud       VM running    52.143.179.100              10.0.0.11           00-0D-3A-E7-A7-72  francecentral
+TP_LEO       VM running    52.143.179.100              10.0.0.11           00-0D-3A-E7-A7-72  francecentral
 Connexion ssh
 
 PS C:\Users\eliot> ssh eliotnth@52.143.179.100
