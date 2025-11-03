@@ -4,14 +4,14 @@ I. Un p'tit nom DNS
 
 🌞 Prouvez que c'est effectif
 ```sh
-PS C:\Users\gusta> az network public-ip show  --resource-group B2_CScloud  --name azure1.tp1PublicIP  --query "{vm:'azure1.tp2', ip:ipAddress, dns:dnsSettings.fqdn}"  -o table
+PS C:\Users\eliot> az network public-ip show  --resource-group B2_CScloud  --name azure1.tp1PublicIP  --query "{vm:'azure1.tp2', ip:ipAddress, dns:dnsSettings.fqdn}"  -o table
 Vm          Ip             Dns
 ----------  -------------  ---------------------------------------------
 azure1.tp2  20.19.160.221  meowtp2cloud.francecentral.cloudapp.azure.com
 
 - Curl
 
-PS C:\Users\gusta> curl http://meowtp2cloud.francecentral.cloudapp.azure.com:8000
+PS C:\Users\eliot> curl http://meowtp2cloud.francecentral.cloudapp.azure.com:8000
 
 
 StatusCode        : 200
@@ -48,7 +48,7 @@ RawContentLength  : 12566
 II. cloud-init
 🌞 Tester cloud-init
 ```sh
-PS C:\Users\gusta> az vm create --resource-group B2_CScloud --name azuretp --image Ubuntu2404 --size Standard_B1s --location francecentral --public-ip-sku Standard --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\id_ed25519.pub" --admin-username gusta --output table
+PS C:\Users\eliot> az vm create --resource-group B2_CScloud --name azuretp --image Ubuntu2404 --size Standard_B1s --location francecentral --public-ip-sku Standard --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\id_ed25519.pub" --admin-username eliot --output table
 The default value of '--size' will be changed to 'Standard_D2s_v5' from 'Standard_DS1_v2' in a future release.
 Selecting "northeurope" may reduce your costs. The region you've selected may cost more for the same services. You can disable this message in the future with the command "az config set core.display_region_identified=false". Learn more at https://go.microsoft.com/fwlink/?linkid=222571
 
@@ -61,7 +61,7 @@ B2_CScloud       VM running    4.233.71.128                10.0.0.10           7
 
 -connexion ssh
 ```sh
-PS C:\Users\gusta> ssh gusta@4.233.71.128
+PS C:\Users\eliot> ssh eliot@4.233.71.128
 The authenticity of host '4.233.71.128 (4.233.71.128)' can't be established.
 ED25519 key fingerprint is SHA256:0ug6dP9t3CdjQ6gdQbaubTXps1eF4JT2+CoDYPfn2iw.
 This key is not known by any other names.
@@ -102,12 +102,12 @@ applicable law.
 To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
-gusta@azuretp:~$
+eliot@azuretp:~$
 
 
 -status du service cloud-init
 
-gusta@azuretp:~$ sudo systemctl status cloud-init
+eliot@azuretp:~$ sudo systemctl status cloud-init
 ● cloud-init.service - Cloud-init: Network Stage
      Loaded: loaded (/usr/lib/systemd/system/cloud-init.service; enabled; preset: enabled)
      Active: active (exited) since Fri 2025-10-31 00:55:13 UTC; 5min ago
@@ -125,11 +125,11 @@ Oct 31 00:55:12 azuretp cloud-init[711]: |    ..   .oB+..O |
 Oct 31 00:55:12 azuretp cloud-init[711]: +----[SHA256]-----+
 Oct 31 00:55:13 azuretp systemd[1]: Finished cloud-init.service - Cloud-init: Network Stage.
 
-gusta@azuretp:~$ cloud-init status
+eliot@azuretp:~$ cloud-init status
 status: done
 
 status: done
-gusta@azuretp:~$ ls -al /var/log/cloud-init*
+eliot@azuretp:~$ ls -al /var/log/cloud-init*
 -rw-r----- 1 root   adm   4415 Oct 31 00:55 /var/log/cloud-init-output.log
 -rw-r----- 1 syslog adm 139404 Oct 31 00:55 /var/log/cloud-init.log
 
@@ -142,7 +142,7 @@ gusta@azuretp:~$ ls -al /var/log/cloud-init*
 
 Deploiement
 ```sh
-PS C:\Users\gusta> az vm create --resource-group B2_CScloud --name azure2.tp2 --image Ubuntu2404 --size Standard_B1s --location francecentral --public-ip-sku Standard  --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\cloud_tp.pub" --admin-username gustanth --output table
+PS C:\Users\eliot> az vm create --resource-group B2_CScloud --name azure2.tp2 --image Ubuntu2404 --size Standard_B1s --location francecentral --public-ip-sku Standard  --custom-data cloud-init.txt --ssh-key-values "$env:USERPROFILE\.ssh\cloud_tp.pub" --admin-username eliotnth --output table
 The default value of '--size' will be changed to 'Standard_D2s_v5' from 'Standard_DS1_v2' in a future release.
 Selecting "northeurope" may reduce your costs. The region you've selected may cost more for the same services. You can disable this message in the future with the command "az config set core.display_region_identified=false". Learn more at https://go.microsoft.com/fwlink/?linkid=222571
 
@@ -151,7 +151,7 @@ ResourceGroup    PowerState    PublicIpAddress    Fqdns    PrivateIpAddress    M
 B2_CScloud       VM running    52.143.179.100              10.0.0.11           00-0D-3A-E7-A7-72  francecentral
 Connexion ssh
 
-PS C:\Users\gusta> ssh gustanth@52.143.179.100
+PS C:\Users\eliot> ssh eliotnth@52.143.179.100
 The authenticity of host '52.143.179.100 (52.143.179.100)' can't be established. ED25519 key fingerprint is SHA256:8M+PHgzsIMRyMJ2BhL62b9tL72wsx7GbLDDB/K1YFJM.        This key is not known by any other names.                                             Are you sure you want to continue connecting (yes/no/[fingerprint])? yes            Warning: Permanently added '52.143.179.100' (ED25519) to the list of known hosts. Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-1012-azure x86_64)
 * Documentation:  https://help.ubuntu.com
 * Management:     https://landscape.canonical.com
@@ -186,12 +186,12 @@ applicable law.
  To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
-gustanth@azure2:~$
+eliotnth@azure2:~$
 Connexion serveur de db
 
-gustanth@azure2:~$ mysql --version
+eliotnth@azure2:~$ mysql --version
 mysql  Ver 8.0.43-0ubuntu0.24.04.2 for Linux on x86_64 ((Ubuntu))
-gustanth@azure2:~$ sudo mysql
+eliotnth@azure2:~$ sudo mysql
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 9
 Server version: 8.0.43-0ubuntu0.24.04.2 (Ubuntu)
@@ -236,7 +236,7 @@ III. Gestion de secrets¶
 
 Connexion ssh
 ```sh
-PS C:\Users\gusta> ssh az1
+PS C:\Users\eliot> ssh az1
 Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-1012-azure x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -266,9 +266,9 @@ See https://ubuntu.com/esm or run: sudo pro status
 
 
 Last login: Thu Oct 30 19:01:42 2025 from 46.193.67.99
-gusta@azure1:~$
+eliot@azure1:~$
 CLI download
-gusta@azure1:~$ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+eliot@azure1:~$ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 Hit:1 http://azure.archive.ubuntu.com/ubuntu noble InRelease
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
 Hit:3 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
@@ -352,7 +352,7 @@ No user sessions are running outdated binaries.
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Recuperation du secret
 
-gusta@azure1:~$ az login --identity --allow-no-subscriptions
+eliot@azure1:~$ az login --identity --allow-no-subscriptions
 [  {
  "environmentName": "AzureCloud",
  "id": "413600cf-bd4e-4c7c-8a61-69e73cddf731",
@@ -367,7 +367,7 @@ gusta@azure1:~$ az login --identity --allow-no-subscriptions
  }
 }
 ]
-gusta@azure1:~$ az keyvault secret show \
+eliot@azure1:~$ az keyvault secret show \
 > --vault-name secrettVaultt \
 > --name testsecret
 {
@@ -417,9 +417,9 @@ echo " DB_PASSWORD mis à jour dans env"
 ```
 🌞 Environnement du script get_secrets.sh
 ```sh
-gusta@azure1:~$ sudo mv /opt/meow/get_secrets.sh /usr/local/bin/get_secrets.sh
-gusta@azure1:~$ sudo chown webapp:webapp /usr/local/bin/get_secrets.sh
-gusta@azure1:~$ sudo chmod 700 /usr/local/bin/get_secrets.sh
+eliot@azure1:~$ sudo mv /opt/meow/get_secrets.sh /usr/local/bin/get_secrets.sh
+eliot@azure1:~$ sudo chown webapp:webapp /usr/local/bin/get_secrets.sh
+eliot@azure1:~$ sudo chmod 700 /usr/local/bin/get_secrets.sh
 B. Exécution automatique
 ```
 🌞 Ajouter le script en ExecStartPre= dans webapp.service
@@ -439,7 +439,7 @@ WantedBy=multi-user.target
 ```
 🌞 Prouvez que la ligne en ExecStartPre= a bien été exécutée
 ```sh
-gusta@azure1:~$ sudo systemctl status webapp
+eliot@azure1:~$ sudo systemctl status webapp
 ● webapp.service - Super Webapp MEOW
      Loaded: loaded (/etc/systemd/system/webapp.service; disabled; preset: enabled)
      Active: active (running) since Fri 2025-10-31 07:52:26 UTC; 37s ago
@@ -464,17 +464,17 @@ DB_PORT=3306
 DB_NAME=meow_database
 DB_USER=meow
 DB_PASSWORD=ancaraaaa
-gusta@azure1:~$ sudo cat /opt/meow/.env | grep DB_PASSWORD
+eliot@azure1:~$ sudo cat /opt/meow/.env | grep DB_PASSWORD
 DB_PASSWORD=meow
 *Apres modif
 
-gusta@azure1:~$ sudo cat /opt/meow/.env | grep DB_PASSWORD
+eliot@azure1:~$ sudo cat /opt/meow/.env | grep DB_PASSWORD
 DB_PASSWORD=meow
 ```
 C. Secret Flask
 🌞 Intégrez la gestion du secret Flask dans votre script get_secrets.sh
 ```sh
-gusta@azure1:~$ az keyvault secret set --vault-name secrettVaultt --name flasksecrett --value "yzbDbWJRHT7RX9yC9AXmjri9p6DQ7ONiyc+l8r1ytd0="
+eliot@azure1:~$ az keyvault secret set --vault-name secrettVaultt --name flasksecrett --value "yzbDbWJRHT7RX9yC9AXmjri9p6DQ7ONiyc+l8r1ytd0="
 {
   "attributes": {
     "created": "2025-10-31T15:38:57+00:00",
@@ -498,7 +498,7 @@ gusta@azure1:~$ az keyvault secret set --vault-name secrettVaultt --name flaskse
 ```
 🌞 Redémarrer le service
 ```sh
-gusta@azure1:~$ sudo systemctl status webapp
+eliot@azure1:~$ sudo systemctl status webapp
 ● webapp.service - Super Webapp MEOW
      Loaded: loaded (/etc/systemd/system/webapp.service; disabled; preset: enabled)
      Active: active (running) since Fri 2025-10-31 15:31:01 UTC; 7s ago
