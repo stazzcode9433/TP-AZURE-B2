@@ -641,8 +641,11 @@ Oct 31 15:31:01 azure1 get_secrets.sh[15601]: Good ! Ready to start the web serv
 Oct 31 15:31:01 azure1 systemd[1]: webapp.service: Found left-over process 15673 (python3) in contro>
 Oct 31 15:31:01 azure1 systemd[1]: webapp.service: This usually indicates unclean termination of a p>
 Oct 31 15:31:01 azure1 systemd[1]: Started webapp.service - Super Webapp MEOW.
+```
+
 -Avant test
 
+```sh
 # Flask Configuration
 FLASK_SECRET_KEY=kailoo
 FLASK_DEBUG=False
@@ -655,8 +658,9 @@ DB_PORT=3306
 DB_NAME=meow_database
 DB_USER=meow
 DB_PASSWORD=meow
+```
 -Après le restart
-
+```sh
 # Flask Configuration
 FLASK_SECRET_KEY=yzbDbWJRHT7RX9yC9AXmjri9p6DQ7ONiyc+l8r1ytd0=
 FLASK_DEBUG=False
