@@ -63,7 +63,7 @@ TP_LEO       VM running    4.233.71.128                10.0.0.10           7C-ED
 ```sh
 PS C:\Users\eliot> ssh eliot@4.233.71.128
 The authenticity of host '4.233.71.128 (4.233.71.128)' can't be established.
-ED25519 key fingerprint is SHA256:0ug6dP9t3CdjQ6gdQbaubTXps1eF4JT2+CoDYPfn2iw.
+ED25519 key fingerprint is SHA256:**************.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '4.233.71.128' (ED25519) to the list of known hosts.
@@ -152,7 +152,7 @@ TP_LEO       VM running    52.143.179.100              10.0.0.11           00-0D
 Connexion ssh
 
 PS C:\Users\eliot> ssh eliotnth@52.143.179.100
-The authenticity of host '52.143.179.100 (52.143.179.100)' can't be established. ED25519 key fingerprint is SHA256:8M+PHgzsIMRyMJ2BhL62b9tL72wsx7GbLDDB/K1YFJM.        This key is not known by any other names.                                             Are you sure you want to continue connecting (yes/no/[fingerprint])? yes            Warning: Permanently added '52.143.179.100' (ED25519) to the list of known hosts. Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-1012-azure x86_64)
+The authenticity of host '52.143.179.100 (52.143.179.100)' can't be established. ED25519 key fingerprint is SHA256:****************.        This key is not known by any other names.                                             Are you sure you want to continue connecting (yes/no/[fingerprint])? yes            Warning: Permanently added '52.143.179.100' (ED25519) to the list of known hosts. Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-1012-azure x86_64)
 * Documentation:  https://help.ubuntu.com
 * Management:     https://landscape.canonical.com
 * Support:        https://ubuntu.com/pro
@@ -355,11 +355,11 @@ Recuperation du secret
 eliot@azure1:~$ az login --identity --allow-no-subscriptions
 [  {
  "environmentName": "AzureCloud",
- "id": "413600cf-bd4e-4c7c-8a61-69e73cddf731",
+ "id": "*****************",
  "isDefault": true,
  "name": "N/A(tenant level account)",
  "state": "Enabled",
- "tenantId": "413600cf-bd4e-4c7c-8a61-69e73cddf731",
+ "tenantId": "******************",
  "user": {
    "assignedIdentityInfo": "MSI",
    "name": "systemAssignedIdentity",
@@ -381,7 +381,7 @@ eliot@azure1:~$ az keyvault secret show \
  "updated": "2025-10-31T05:01:51+00:00"
 },
 "contentType": null,
-"id": "https://secrettvaultt.vault.azure.net/secrets/testsecret/6d04e64162304aeaaf152e3847dd96bd",
+"id": "***************",
 "kid": null,
 "managed": null,
 "name": "testsecret",
@@ -453,7 +453,7 @@ eliot@azure1:~$ sudo systemctl status webapp
 -- Ficher .env
 
 # Flask Configuration
-FLASK_SECRET_KEY=ewnFw95H7qBeGiVvkQl9YmnJohW6NCMMqR0arxfnWYASeCDvzwQwzLxMCboAOi3e
+FLASK_SECRET_KEY=*************
 FLASK_DEBUG=False
 FLASK_HOST=0.0.0.0
 FLASK_PORT=8000
@@ -474,7 +474,7 @@ DB_PASSWORD=meow
 C. Secret Flask
 🌞 Intégrez la gestion du secret Flask dans votre script get_secrets.sh
 ```sh
-eliot@azure1:~$ az keyvault secret set --vault-name secrettVaultt --name flasksecrett --value "yzbDbWJRHT7RX9yC9AXmjri9p6DQ7ONiyc+l8r1ytd0="
+eliot@azure1:~$ az keyvault secret set --vault-name secrettVaultt --name flasksecrett --value "***********"
 {
   "attributes": {
     "created": "2025-10-31T15:38:57+00:00",
@@ -486,7 +486,7 @@ eliot@azure1:~$ az keyvault secret set --vault-name secrettVaultt --name flaskse
     "updated": "2025-10-31T15:38:57+00:00"
   },
   "contentType": null,
-  "id": "https://secrettvaultt.vault.azure.net/secrets/flasksecrett/ca0421a0afdc4db793bb3f9bb1da43c2",
+  "id": "**********************",
   "kid": null,
   "managed": null,
   "name": "flasksecrett",
