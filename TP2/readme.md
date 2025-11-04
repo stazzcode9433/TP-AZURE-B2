@@ -7,11 +7,11 @@ I. Un p'tit nom DNS
 PS C:\Users\eliot> az network public-ip show  --resource-group TP_LEO  --name azure1.tp1PublicIP  --query "{vm:'azure1.tp2', ip:ipAddress, dns:dnsSettings.fqdn}"  -o table
 Vm          Ip             Dns
 ----------  -------------  ---------------------------------------------
-azure1.tp2  20.19.160.222  meowtp2cloud.francecentral.cloudapp.azure.com
+azure1.tp2  20.19.160.222  meowtpleo.francecentral.cloudapp.azure.com
 
 - Curl
 
-PS C:\Users\eliot> curl http://meowtp2cloud.francecentral.cloudapp.azure.com:8000
+PS C:\Users\eliot> curl http://meowtpleo.francecentral.cloudapp.azure.com:8000
 
 
 StatusCode        : 200
